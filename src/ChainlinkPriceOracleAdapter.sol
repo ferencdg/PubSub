@@ -25,6 +25,10 @@ contract ChainlinkPriceOracleAdapter is IPriceOracle {
          * https://docs.chain.link/data-feeds/l2-sequencer-feeds
          */
         (, int256 answer,,,) = DATA_FEED.latestRoundData();
+        // 1. for extra safety the timestamp returned from latestRoundData could be checked to make sure it is
+        //    not stale
+        // 2. some sanity check on the returned answer could also be made to make sure it is within
+        //    reasonable boundaries
         return answer.toUint256();
     }
 }

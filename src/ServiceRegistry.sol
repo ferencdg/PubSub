@@ -300,6 +300,16 @@ contract ServiceRegistry is Ownable2StepUpgradeable, UUPSUpgradeable {
               2.2 update the balances and other data for both the subscriber and
                   the providers that this subscriber previusly subscribed to
               2.3 send the remaining balance to _recipientAddress set by the slasher
+
+           Regarding security
+           1. As the slasher iterates through all the subscriptions, a subscriber could prevent slashing by
+           adding a huge number of subscriptions, large enough that the transaction cannot
+           be placed inside one block. There are multiple solutions for this for example limiting
+           the number of subscriptions per subscriber.
+           2. There has to be a way to recover from situations where the slash happens too late,
+              and now the subscriber balance is negative, as this could prevent some providers from withdrawing.
+              One way to solve this issue is to take a fee from all provider earnings that contribute to
+              an insurance/recover fund.
         */
     }
 }
