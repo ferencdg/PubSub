@@ -51,9 +51,3 @@ Tests are currently not added, and the code most probably contains major bugs du
 ### Each provider has a list of Subscribers
 
 The problem description implies that providers should maintain a list of Subscribers. However that list is never used, and storing just the subscriber count is sufficient. For the sake of gas efficiency, I didn't add a list of subscribers to the provider, but can be easily added later.
-
-### Using EnumerableSet.Bytes32Set to store the providers for each subscriber
-
-Originally I planned to iterate through all the subscriptions of a particular subscriber to account for the suspended providers. Later I changed to design to rely on offchain components providing suspendedProviderIds, so I don't necessarily need to iterate through the list, so a simple Set might be sufficient.
-
-However during slashing - as I mentioned earlier - slashers are not incentivized to provide a list of suspendedProviderIds, so during slashing we do have to iterate through the subscriptions, hence it is worth keeping EnumerableSet.Bytes32Set.
