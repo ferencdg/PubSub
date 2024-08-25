@@ -1,5 +1,7 @@
 # ServiceRegistry
 
+Problem description can be read [here](docs/Problem.pdf).
+
 ## High level design
 
 The solution I submit intends to charge subscribers per second for the usage of the services. It also aims to minimize gas usage by borrowing concepts from staking and slashing. The solution works for any number of service providers. The solution can also be modified to allow changing service fees. The following 3 concepts help minimize gas cost.
